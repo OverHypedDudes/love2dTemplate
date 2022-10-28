@@ -1,0 +1,4 @@
+Here you can save your audio stuff lol
+(I personally recommend you to separate the
+audios in different folders, like for example
+"SFX", "Music", "Misc" folders)

@@ -1,0 +1,1 @@
+Here you can put your spritesheets ('Sparrow Atlas v2' converted to Lua Table)

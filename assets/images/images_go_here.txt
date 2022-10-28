@@ -1,0 +1,1 @@
+Here you can put your images or spritesheets (Put your Lua Table spritesheet in the "sprites" folder)

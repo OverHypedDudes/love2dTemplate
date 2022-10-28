@@ -1,0 +1,1 @@
+Here you can save data (For example, ".tmx" Tiled levels, or other stuff idk)
