@@ -1,5 +1,5 @@
 # LÖVE Game Template
-A Love2D Project Template using the most important things in my projects.
+A Love2D Project Template using the most important things in our projects.
 
 ## Features
 * Fast Workflow — Add a Gamestate, start coding
