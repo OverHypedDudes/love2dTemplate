@@ -43,7 +43,7 @@ function love.keypressed(key)
 	elseif key == "f2" then
 		love.system.openURL("file://" .. love.filesystem.getSaveDirectory() .. "/screenshots")
 		lovelyToasts.show("Opening the screenshots folder...", 3)
-	elseif key == "f4" then
+	elseif key == "f11" then
 		-- Fullscreen toggle (this one needs a little rework imo)
 		if love.window.getFullscreen() then
 			love.window.setFullscreen(false)
