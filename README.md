@@ -5,7 +5,7 @@ A Love2D Project Template using the most important things in our projects.
 * Fast Workflow — Add a Gamestate, start coding
 * Easy coding — The [Graphics Module](modules/graphics.lua) makes everything much easier to code
 * Template State — So you don't have to code everything from scratch
-* Preinstalled Libraries — Our most essencial libs are preinstalled
+* Preinstalled Libraries — Our most essential libs are preinstalled
 
 ## Credits
 - [HTV04](https://github.com/HTV04) - Most of the [modules](modules/) and some elements in the [main.lua](main.lua)
