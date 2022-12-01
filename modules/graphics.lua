@@ -205,6 +205,7 @@ return {
 			end,
 			draw = function(self)
 				local flooredFrame = math.floor(frame)
+				print(flooredFrame)
 
 				if flooredFrame <= anim.stop then
 					local x = self.x
