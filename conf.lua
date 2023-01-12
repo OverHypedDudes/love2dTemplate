@@ -5,4 +5,5 @@ function love.conf(t)
 
 	t.window.title = "Your Game"                   -- Window Title
 	t.window.icon = "assets/images/icon.png"       -- Window Icon (Also the game icon)
+	t.window.resizable = true                      -- Window resizable
 end

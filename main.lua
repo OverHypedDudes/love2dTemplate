@@ -6,11 +6,13 @@ curOS = love.system.getOS()
     Timer = require "lib.timer"
     Gamestate = require "lib.gamestate"
     lovelyToasts = require "lib.lovelyToasts"
-    lovesize = require "lib.lovesize"
+	push = require "lib.push"
 
     -- Load Modules
 	status = require "modules.status"
 	graphics = require "modules.graphics"
+
+	push.setupScreen(800, 600, {upscale = "normal"})
 
 function love.load()
 
@@ -22,13 +24,14 @@ function love.load()
 --  [[Load fonts and stuff]]
 	graphics.font("font", "assets/fonts/metro.otf")
 
+
+
     -- Load the Gamestate lib
-    Gamestate.registerEvents()
     Gamestate.switch(template) -- Change this to your new state, or just rename the template one.
 end
 
 function love.resize(width, height)
-	lovesize.resize(width, height)
+	push.resize(width, height)
 end
 
 function love.keypressed(key)
@@ -63,7 +66,7 @@ function love.update(dt)
 		Gamestate.update(dt)
 	else
 		graphics.font("font", "assets/fonts/metro.otf")
-		graphics.screenBase(lovesize.getWidth(), lovesize.getHeight())
+		graphics.screenBase(push.getWidth(), push.getHeight())
 		graphics.setColor(1, 1, 1) -- Fade effect on
 		Gamestate.update(dt)
 		love.graphics.setColor(1, 1, 1) -- Fade effect off
@@ -89,8 +92,8 @@ function love.draw()
 			love.graphics.printf("Loading...", 0, graphics.getHeight() - 50, 1280, "center", 0, 1.3, 1.3)
 		end
 	else
-		graphics.screenBase(lovesize.getWidth(), lovesize.getHeight())
-		lovesize.begin()
+		graphics.screenBase(push.getWidth(), push.getHeight())
+		push.start()
 			graphics.setColor(1, 1, 1) -- Fade effect on
 			Gamestate.draw()
 			love.graphics.setColor(1, 1, 1) -- Fade effect off
@@ -98,13 +101,12 @@ function love.draw()
 			lovelyToasts.draw()
 
 			if status.getLoading() then
---				love.graphics.print("Loading...", lovesize.getWidth() - 175, lovesize.getHeight() - 50)
 				love.graphics.setColor(0, 0, 0, 0.5)
 				love.graphics.rectangle("fill", 0, 0, 1280, 720)
 				love.graphics.setColor(1, 1, 1)
 				love.graphics.printf("Loading...", graphics.getWidth() - 175, graphics.getHeight() - 50, 1280, "center", 0, 1.3, 1.3)
 			end
-		lovesize.finish()
+		push.finish()
 	end
 	graphics.screenBase(love.graphics.getWidth(), love.graphics.getHeight())
 end
