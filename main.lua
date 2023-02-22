@@ -47,19 +47,16 @@ function love.keypressed(key)
 		love.system.openURL("file://" .. love.filesystem.getSaveDirectory() .. "/screenshots")
 		lovelyToasts.show("Opening the screenshots folder...", 3)
 	elseif key == "f11" then
-		-- Fullscreen toggle (this one needs a little rework imo)
-		if love.window.getFullscreen() then
-			love.window.setFullscreen(false)
-		else
-			love.window.setFullscreen(true)
-		end
+		fullscreen = not fullscreen
+		love.window.setFullscreen(fullscreen)
+		love.resize(love.graphics.getDimensions())
 	else
 		Gamestate.keypressed(key)
 	end
 end
 
 function love.update(dt)
-    dt = math.min(dt, 1 / 30)
+    dt = math.min(dt, 1 / 30) -- 30 fps minimum
 
     lovelyToasts.update(dt)
     if status.getNoResize() then

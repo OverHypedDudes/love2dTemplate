@@ -29,6 +29,10 @@ local fadeTimer
 local screenWidth, screenHeight
 
 return {
+	cache = {
+		["images"] = {},
+		["fonts"] = {}
+	},
 	screenBase = function(width, height)
 		screenWidth, screenHeight = width, height
 	end,
@@ -55,7 +59,27 @@ return {
 		return imageType
 	end,
 
-	newImage = function(imageData, optionsTable)
+	clearCache = function(option)
+		if option then 
+			graphics.cache[option] = {}
+		else
+			graphics.cache = {
+				["images"] = {},
+				["fonts"] = {}
+			}
+		end
+	end,
+	clearItemFromCache = function(option, item)
+		if graphics.cache[option][item] then
+			graphics.cache[option][item] = nil
+		end
+	end,
+
+	newImage = function(image, optionsTable)
+		local pathStr = image
+		if not graphics.cache.images[pathStr] then 
+			graphics.cache.images[pathStr] = love.graphics.newImage(pathStr)
+		end
 		local image, width, height
 
 		local options
@@ -359,6 +383,12 @@ return {
 	end,
 
 	font = function(fontname, path)
-		fontname = love.graphics.newFont(path, 16)
+		--fontname = love.graphics.newFont(path, 16)
+
+		if not graphics.cache["fonts"][fontname] then -- DON'T LOAD FONTS MULTIPLE TIMES WHEN ITS NOT NEEDED!!!
+			graphics.cache["fonts"][fontname] = love.graphics.newFont(path, 16)
+		end 
+
+		love.graphics.setFont(graphics.cache["fonts"][fontname])
 	end
 }

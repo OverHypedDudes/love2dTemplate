@@ -1,9 +1,9 @@
 --[[
 This is an example of an image:
+-- P1
+local BG
 
-local BG = graphics.newImage(love.graphics.newImage(graphics.imagePath("path/to/your/bg")))
-
-*DO NOT* add the "assets/images" at the start of the URL, the "graphics" module automatically redirects the path to THAT folder. 
+*DO NOT* add the "assets/images/(png/dds)" at the start of the URL, the "graphics" module automatically redirects the path to THAT folder. 
 ]]
 
 --[[
@@ -31,18 +31,19 @@ return {
 
 		-- to load a spritesheet, use sprite = love.filesystem.load("path/to/your/spritesheet.lua")()
 		-- to animate a spritesheet, use sprite:animate("animationName", looped)		
-	end,
 
+		-- This is an example of a image:
+		-- P2
+		-- BG = graphics.newImage(graphics.imagePath("path/to/your/bg"))
+
+		-- Don't add image loading at the top of the file, else it will load on game startup
+	end,
+ 
 
 	update = function(self, dt)
+		-- to update the spritesheet, use sprite:update(dt)
 		if not graphics.isFading() then
-			-- Put your code here
-
-			-- to update the spritesheet, use sprite:update(dt)
-
-			if not Gamestate.current().mousemoved then
-				love.mouse.setVisible(true)
-			end
+			-- Code that only runs when the screen is not fading
 		end
 	end,
 
@@ -52,10 +53,7 @@ return {
 
 			-- Put your code here
 			-- To draw an image with the graphics module, use BG:draw()
-			love.graphics.print("HELLO WOOOOOOOOOOOOOOOORLD")
-			love.graphics.push()
-				love.graphics.setColor(1, 1, 1)
-			love.graphics.pop()
+			love.graphics.printf("HELLO WOOOOOOOOOOOOOOOORLD", -140, -25, 300, "center")
 		love.graphics.pop()
 	end,
 
